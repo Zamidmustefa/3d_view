@@ -20,7 +20,9 @@ import Products from "./components/Products.vue";
 import Checkout from "./components/Checkout.vue";
 import ProductDetail from "./components/ProductDetail.vue";
 import Upload3d from "./components/Upload3d.vue";
-
+import Upload3dModel from "./components/Upload3dModel.vue";
+import About from "./components/About.vue";
+import Contact from "./components/Contact.vue";
 Vue.use(VueRouter);
 Vue.config.productionTip = false;
 
@@ -41,6 +43,18 @@ const router = new VueRouter({
         {
             path: "/upload",
             component: Upload3d
+        },
+        {
+            path: "/upload3d",
+            component: Upload3dModel
+        },
+        {
+            path: "/about",
+            component: About
+        },
+        {
+            path: "/contact",
+            component: Contact
         },
     ]
 });

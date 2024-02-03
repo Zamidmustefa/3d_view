@@ -17,13 +17,15 @@
     "core-js": "^3.6.5",
     "eslint": "^7.15.0",
     "firebase": "^10.7.2",
+    "gsap": "^3.12.5",
     "jquery": "^3.5.1",
     "popper.js": "^1.16.1",
     "three": "^0.160.1",
     "three-addons": "^1.2.0",
     "vue": "^2.6.11",
     "vue-3d-model": "^1.4.1",
-    "vue-router": "^3.4.9"
+    "vue-router": "^3.4.9",
+    "vue-slick-carousel": "^1.0.6"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",

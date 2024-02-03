@@ -5,10 +5,7 @@
     <table class="table table-hover" v-if="cart.length">
       <caption class="text-right h3">
         <b>Total:</b>
-        <price
-          class="d-block text-success font-weight-light"
-          :value="Number(cartTotal)"
-        ></price>
+        <price class="d-block text-success font-weight-light" :value="Number(cartTotal)"></price>
       </caption>
       <thead>
         <tr>
@@ -26,10 +23,7 @@
               <button @click="$emit('add', item.product)" class="btn btn-info">
                 +
               </button>
-              <button
-                @click="$emit('delete', index)"
-                class="btn btn-outline-info"
-              >
+              <button @click="$emit('delete', index)" class="btn btn-outline-info">
                 -
               </button>
             </div>
@@ -44,23 +38,18 @@
       </tbody>
     </table>
     <div>
-      <router-link class="btn btn-sm btn-outline-info text-dark mb-4" to="/"
-        >Keep Shopping</router-link
-      >
+      <router-link class="btn btn-sm btn-outline-info text-dark mb-4" to="/">Keep Shopping</router-link>
     </div>
     <div class="dsf">
-      <input type="text" placeholder="Name" />
-      <input type="Number" placeholder="Phone Number" />
-      <input type="text" placeholder="Street Address" />
-      <input type="text" placeholder="City" />
-      <input type="text" placeholder="Province" />
-      <input type="text" placeholder="Postal code" />
+      <input v-model="customer.name" type="text" placeholder="Name" />
+      <input v-model="customer.phone_number" type="Number" placeholder="Phone Number" />
+      <input v-model="customer.street_address" type="text" placeholder="Street Address" />
+      <input v-model="customer.city" type="text" placeholder="City" />
+      <input v-model="customer.province" type="text" placeholder="Province" />
+      <input v-model="customer.postal_code" type="text" placeholder="Postal code" />
     </div>
     <div>
-      <button
-        class="btn btn-sm btn-outline-info text-dark mb-4 float-right"
-        @click="addOrder"
-      >
+      <button class="btn btn-sm btn-outline-info text-dark mb-4 float-right" @click="addOrder">
         {{ prom }}
       </button>
     </div>
@@ -69,7 +58,7 @@
 
 <script>
 import Price from "./Price.vue";
-import {app} from "../../firebase/boot"
+import { app } from "../../firebase/boot"
 export default {
   name: "checkout",
   props: ["cart", "cartTotal"],
@@ -77,7 +66,7 @@ export default {
     Price,
   },
   methods: {
-    addOrder(){
+    addOrder() {
       this.prom = "...Adding"
       app.firestore().collection("orders").add({
         customer: this.customer,
@@ -92,7 +81,7 @@ export default {
   },
   data() {
     return {
-      prom: "Pay Now",
+      prom: "Order Now!",
       customer: {
         name: "",
         phone_number: "",
