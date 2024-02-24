@@ -7,7 +7,7 @@
             class="btn btn-sm btn-outline-success"
             @click="$parent.$emit('toggle')"
           >
-            <font-awesome-icon icon="dollar-sign"></font-awesome-icon>
+            <font-awesome-icon icon="money-bill"></font-awesome-icon>
           </button>
       </div>
       <div class="dropdown ml-2" v-if="cart.length > 0">

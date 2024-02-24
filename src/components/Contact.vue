@@ -15,7 +15,7 @@
 
             <!-- Vue Contact Form Component -->
             <div class="contact-form">
-                <form @submit.prevent="submitForm">
+                <form @submit.prevent="">
                     <label for="name">Name:</label>
                     <input type="text" id="name" v-model="formData.name" required>
 
@@ -25,18 +25,23 @@
                     <label for="message">Message:</label>
                     <textarea id="message" v-model="formData.message" rows="4" required></textarea>
 
-                    <button type="submit">Submit</button>
+                    <button v-if="!load" @click="submitForm" type="submit">Submit</button>
+                    <button v-if="load" type="disabled">Sending</button>
                 </form>
             </div>
+            <div v-if="submitted" style="margin-top: 12px;">Contact Form submitted successfully</div>
         </div>
     </div>
 </template>
 
 <script>
+import { app } from '../../firebase/boot';
 export default {
     name: "contact",
     data() {
         return {
+            submitted: false,
+            load: false,
             formData: {
                 name: '',
                 email: '',
@@ -46,14 +51,11 @@ export default {
     },
     methods: {
         submitForm() {
-            // You can handle the form submission logic here
-            console.log('Form submitted:', this.formData);
-            // For demo purposes, you can reset the form data
-            this.formData = {
-                name: '',
-                email: '',
-                message: ''
-            };
+            this.load = true
+            app.firestore().collection("contact").add({...this.formData}).then(() => {
+                this.submitted = true
+                this.load = false
+            })
         }
     }
 };

@@ -1,17 +1,9 @@
 /* eslint-disable no-undef */
 <template>
   <div id="app" class="container mt-5">
-    <router-view
-      :cart="cart"
-      :cartQty="cartQty"
-      :cartTotal="cartTotal"
-      :sliderStatus="sliderStatus"
-      :maximum.sync="maximum"
-      :products="products"
-      @add="addItem"
-      @delete="deleteItem"
-      @toggle="toggleSliderStatus"
-    ></router-view>
+    <router-view :cart="cart" :cartQty="cartQty" :cartTotal="cartTotal" :sliderStatus="sliderStatus"
+      :maximum.sync="maximum" :products="products" @add="addItem" @delete="deleteItem"
+      @toggle="toggleSliderStatus"></router-view>
   </div>
 </template>
 
@@ -177,3 +169,46 @@ Print it in plain colour, or add a stripe as on the pictures, which really draws
   },
 };
 </script>
+<style>
+@media only screen and (min-width: 769px) {
+  .desktop-only {
+    display: none;
+  }
+}
+
+.cat {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 30px;
+}
+
+.desktop-only {
+  display: block;
+}
+
+@media only screen and (max-width: 768px) {
+  .mobile-only {
+    display: none;
+  }
+
+  .hmb {
+    display: none;
+  }
+
+  .hmd {
+    display: block;
+  }
+
+  .header {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cat {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px
+  }
+}
+</style>

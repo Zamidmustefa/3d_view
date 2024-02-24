@@ -23,7 +23,7 @@
     </div>
     <div style="margin: 50px 0">
       <h4>Shop the best</h4>
-      <div style="display: flex; justify-content: space-around; margin-top: 30px;">
+      <div class="cat">
         <div class="cat-box">Jewellery</div>
         <div class="cat-box">Home Furniture</div>
         <div class="cat-box">Fashion & Style</div>

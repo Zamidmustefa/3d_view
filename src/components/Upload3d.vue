@@ -34,6 +34,7 @@
         {{ prom }}
       </button>
     </div>
+    <div v-if="submitted" style="margin-top: 12px;">Model submitted successfully</div>
   </div>
 </template>
 
@@ -50,6 +51,7 @@ export default {
       modelPath: null,
       prom: "Order Now!",
       fileP: null,
+      submitted: false,
       customer: {
         name: "",
         phone_number: "",
@@ -93,7 +95,10 @@ export default {
         customer: this.customer,
         link: this.fileP
       }).then(() => {
-        window.location.href = '/';
+        this.submitted = true
+        setTimeout(() => {
+          window.location.href = '/';
+        }, 800);
       }).catch(() => {
         this.prom = "Error"
       })
