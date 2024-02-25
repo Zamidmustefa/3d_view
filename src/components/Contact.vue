@@ -15,9 +15,9 @@
 
             <!-- Vue Contact Form Component -->
             <div class="contact-form">
-                <form @submit.prevent="">
+                <form @submit.prevent="submitForm">
                     <label for="name">Name:</label>
-                    <input type="text" id="name" v-model="formData.name" required>
+                    <input type="text" id="name" v-model="formData.name" @keypress="validateName" required>
 
                     <label for="email">Email:</label>
                     <input type="email" id="email" v-model="formData.email" required>
@@ -25,7 +25,7 @@
                     <label for="message">Message:</label>
                     <textarea id="message" v-model="formData.message" rows="4" required></textarea>
 
-                    <button v-if="!load" @click="submitForm" type="submit">Submit</button>
+                    <button v-if="!load" type="submit">Submit</button>
                     <button v-if="load" type="disabled">Sending</button>
                 </form>
             </div>
@@ -52,10 +52,22 @@ export default {
     methods: {
         submitForm() {
             this.load = true
-            app.firestore().collection("contact").add({...this.formData}).then(() => {
+            app.firestore().collection("contact").add({ ...this.formData }).then(() => {
                 this.submitted = true
                 this.load = false
+                this.formData = {
+                    name: '',
+                    email: '',
+                    message: ''
+                }
             })
+        },
+        validateName(event) {
+            const enteredChar = String.fromCharCode(event.charCode);
+            const regex = /^[a-zA-Z\s]*$/; // Only allows alphabets and spaces
+            if (!regex.test(enteredChar) || this.formData.name.length >= 30) {
+                event.preventDefault();
+            }
         }
     }
 };
