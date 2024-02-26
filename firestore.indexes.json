@@ -1,19 +1,4 @@
 {
-  "indexes": [
-    {
-      "collectionGroup": "orders",
-      "queryScope": "COLLECTION",
-      "fields": [
-        {
-          "fieldPath": "cart",
-          "order": "ASCENDING"
-        },
-        {
-          "fieldPath": "customer",
-          "order": "ASCENDING"
-        }
-      ]
-    }
-  ],
+  "indexes": [],
   "fieldOverrides": []
 }

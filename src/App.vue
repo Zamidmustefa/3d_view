@@ -185,7 +185,9 @@ Print it in plain colour, or add a stripe as on the pictures, which really draws
 .desktop-only {
   display: block;
 }
-
+.mobile-only {
+    display: none;
+  }
 @media only screen and (max-width: 768px) {
   .mobile-only {
     display: none;
